@@ -1,6 +1,7 @@
+""" (Re)create database for mailroom donations """
 import random
 
-from model import db, Donor, Donation 
+from model import db, Donor, Donation
 
 db.connect()
 
@@ -10,17 +11,16 @@ db.drop_tables([Donor, Donation])
 
 db.create_tables([Donor, Donation])
 
-alice = Donor(name="Alice")
-alice.save()
+ALICE = Donor(name="Alice")
+ALICE.save()
 
-bob = Donor(name="Bob")
-bob.save()
+BOB = Donor(name="Bob")
+BOB.save()
 
-charlie = Donor(name="Charlie")
-charlie.save()
+CHARLIE = Donor(name="Charlie")
+CHARLIE.save()
 
-donors = [alice, bob, charlie]
+DONORS = [ALICE, BOB, CHARLIE]
 
 for x in range(30):
-    Donation(donor=random.choice(donors), value=random.randint(100, 10000)).save()
-
+    Donation(donor=random.choice(DONORS), value=random.randint(100, 10000)).save()
